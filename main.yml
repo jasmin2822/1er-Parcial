@@ -1,0 +1,11 @@
+name: Deploy a Surge
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Instalar Surge
+        run: npm install --global surge
+      - name: Desplegar en Surge
+        run: surge ./ --domain firstparcial.surge.sh --login ${{ secrets.SURGE_LOGIN }} --token ${{ secrets.SURGE_TOKEN }}
